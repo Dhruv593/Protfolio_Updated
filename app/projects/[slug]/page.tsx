@@ -4,16 +4,23 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { notFound } from 'next/navigation';
 
+// interface ProjectPageProps {
+//   params: {
+//     slug: string;
+//   };
+// }
+
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const project = await getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
 
   if (!project) {
     notFound();

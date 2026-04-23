@@ -75,7 +75,7 @@ export function getOptimizedImageUrl(
     format?: 'webp' | 'jpg' | 'png';
   } = {}
 ): string {
-  const { width = 1200, height, quality = 80, format = 'webp' } = options;
+  const { width = 1200, height, quality = 80 } = options;
 
   let url = builder
     .image(source)
